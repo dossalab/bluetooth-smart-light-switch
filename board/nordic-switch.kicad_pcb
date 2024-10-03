@@ -3713,7 +3713,7 @@
 				)
 			)
 		)
-		(property "Value" "330uF 16V"
+		(property "Value" "220uF 10V"
 			(at 0 3.1 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -4805,7 +4805,7 @@
 				)
 			)
 		)
-		(property "Value" "510"
+		(property "Value" "51R"
 			(at 0 1.82 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5018,7 +5018,7 @@
 				)
 			)
 		)
-		(property "Value" "680"
+		(property "Value" "1K"
 			(at 0 1.43 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5485,7 +5485,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "100k"
 			(at 0 1.43 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5537,7 +5537,7 @@
 		(path "/00000000-0000-0000-0000-00005e7c2487")
 		(sheetname "Root")
 		(sheetfile "nordic-switch.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -0.237258 0.5225)
 			(end 0.237258 0.5225)
@@ -7062,7 +7062,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "680n 400V"
+		(property "Value" "220n 600V"
 			(at -1.6 -2.575 180)
 			(unlocked yes)
 			(layer "B.Fab")
