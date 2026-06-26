@@ -1,0 +1,56 @@
+[package]
+name = "nordic-switch-sw-rs"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = "z"
+
+[features]
+default = ["defmt-logging", "platform-nrf52832"]
+defmt-logging = [
+  "defmt",
+  "defmt-rtt",
+  "embassy-time/defmt",
+  "embassy-sync/defmt",
+  "embassy-executor/defmt",
+  "embassy-nrf/defmt",
+  "nrf-softdevice/defmt",
+  "panic-probe/print-defmt"
+]
+platform-nrf52832 = [
+  "embassy-nrf/nrf52832",
+  "nrf-softdevice/nrf52832"
+]
+
+[dependencies]
+cortex-m = "0.7.6"
+cortex-m-rt = "0.7.0"
+panic-probe = "0.3"
+defmt = { version = "0.3", optional = true }
+defmt-rtt = { version = "0.4.0", optional = true }
+git-version = "0.3.5"
+heapless = "0.8.0"
+futures = { version = "0.3.30", default-features = false }
+assign-resources = "0.4.1"
+
+[dependencies.embassy-time]
+git = "https://github.com/embassy-rs/embassy"
+
+[dependencies.embassy-sync]
+git = "https://github.com/embassy-rs/embassy"
+
+[dependencies.embassy-executor]
+git = "https://github.com/embassy-rs/embassy"
+features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"]
+
+[dependencies.embassy-nrf]
+git = "https://github.com/embassy-rs/embassy"
+features = [ "time-driver-rtc1", "gpiote", "unstable-pac", "time" ]
+
+[dependencies.nrf-softdevice]
+git = "https://github.com/embassy-rs/nrf-softdevice"
+features = [ "s132", "ble-gatt-server", "ble-peripheral", "critical-section-impl" ]
