@@ -1,38 +1,32 @@
-# Nordic-switch (version 1.1 NOT TESTED - See master branch for the current version)
+# Bluetooth controlled cord light switch
 
 **Before building, read this carefully (especially Safety guidelines)**
 
-This project aims to create a remote-controlled, *smart* light switch. The part presented here is the board that is embedded into the cord switch casing. 
-It seems to work, however barely tested in the field (**TL;DR it's quite dangerous and probably can combust spontaneously**).
-Software was never fully developed, but you can take any example from Nordic SDK or even use Arduino.
+This project aims to create a remote-controlled, *smart* cord light switch. It has both physical control button and Bluetooth LE capabilities, allowing for very natural user experience.
 
-The power supply is rated at 220V / 50 Hz. That's what I had at the moment. If the frequency or/and voltage is different you most likely will need to recalculate the supply.
+This repo contains both PCB design and firmware.
 
-**Make sure you know what you're doing. It goes without saying that I'm not taking any responsibility for your actions. This device is not for beginners for sure.**
+Hardware seem to work, however still barely tested in the field. High voltage part is rated at 220-230V / 50 Hz (European-ish standard). It should be trivial to recalculate the supply for US standard.
+
+The firmware was never fully developed, but `firmware` directory contains the current work-in-progress state to get you started.
+
+**Make sure you know what you're doing. This project involves working with high voltages and requires advanced electronics experience. I'm not taking any responsibility for possible damages linked to usage of this device**
 
 ![board render](/images/board.png)
 
 ## Bringup
 
-There are 4 solder pads underneath the board. Solder some thin wires to it (thicc ones will most likely rip the pads off the board). **NEVER INTERFACE WITH THE DEVICE WHILE PLUGGED INTO MAINS!** Inject the voltage from separate power supply while testing! Make sure your software runs well *before* testing the device plugged. In the software you need to ensure that:
-- The Nordic SoftDevice is not using the LF crystal (since there is no any). **Nothing will work without this step!**;
-- All power saving options possibly activated;
-- The triac control pin is inverted (0 is active, 1 is not active).
+There are 4 solder pads underneath the board. You'll have to Solder some wires to it in order to connect to the programming probe. Supply your own safe external power from your debugging probe or any other low-power source. **NEVER INTERFACE WITH THE DEVICE WHILE PLUGGED INTO MAINS POWER!**
+
+The firmware is written in Rust and uses Embassy the async framework with nrf-softdevice crate for BLE.
 
 ## Some safety guidelines
 
-- **NEVER NEVER** connect the switch to the computer while plugged into mains - you will have a 50 / 50 chance of burning everything. Use low-power 3.3 volt adapter while developing;
 - Never touch any parts of the board while operational - you'd likely get shock;
-- Never leave device unattended - it's not stable enough to trust it;
+- Don't leave device unattended for now - it's not stable enough to trust it;
 - Be generally in a good state of mind and follow what you are doing - **it is easy to make mistakes and burn your stuff**
 
-## TODO
+## Roadmap
 
-- Proper casing (I just used the one from the real switch, with drilled-out insides;
-- **Tests Tests Tests!** Make sure device can work reliably and it is rated for conditions of the power mains.
-
-## Further discussion
-
-(I wrote some really silly description for version 1.0 at https://cringe.page/content/switch/switch.html)
-
-If you assembled device and it worked / not worked for you - please share your stories
+- Proper case design (I just used one from the real switch, with drilled-out insides);
+- HomeAssistant integration.
